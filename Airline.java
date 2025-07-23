@@ -13,8 +13,38 @@ public class Airline {
         this.flights = new Flight[numofFlights];
         this.tickets = new Ticket[numofTickets];
         this.users = new User[numofUsers];
+    }
 
+    public void setName(String name){
+        this.name = name;
+    }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public void setFlights(Flight[] flights){
+        this.flights = flights;
+    }
+
+    public Flight[] getFlights(){
+        return this.flights;
+    }
+
+    public void setTickets(Ticket[] tickets){
+        this.tickets = tickets;
+    }
+
+    public Ticket[]getTickets(){
+        return this.tickets;
+    }
+
+    public void setUsers(User[] users){
+        this.users = users;
+    }
+
+    public User[] getUsers(){
+        return this.users;
     }
 
     
@@ -22,9 +52,30 @@ public class Airline {
         return Flight;
     }
 
+    public void updateFlight(Flight Flight){
+        
+    }
+
+    public Flight deleteFlight(Flight Flight){
+        return Flight;
+    }
+
+    public User[] registerUser(User user){
+        return this.users;
+    }
+
+    public void updateUsers(User user){
+        
+    }
+
+    public void viewTicket(Ticket ticket, Flight flight){
+
+    }
+
+
+
     
 
-//   accessor methods
 //  addFlight(Flight): Flight[]
 //  updateFlight(Flight[]): void
 //  deleteFlight(Flight): Flight[]
