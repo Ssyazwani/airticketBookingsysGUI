@@ -1,0 +1,7 @@
+public class Admin extends User{
+
+    public Admin() {
+        super("admin","admin","admin@gmail.com","admin");
+    }
+    
+}
