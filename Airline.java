@@ -8,7 +8,7 @@ public class Airline {
     private User[] users;
 
 
-    Airline(String name, int numofFlights, int numofTickets, int numofUsers){
+    public Airline(String name, int numofFlights, int numofTickets, int numofUsers){
         this.name = name;
         this.flights = new Flight[numofFlights];
         this.tickets = new Ticket[numofTickets];
