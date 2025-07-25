@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 public class Main {
 
     public static void main (String[] args) {
@@ -16,7 +18,13 @@ public class Main {
        // Ticket[] tickets ={
        //     new Ticket("001", "Syaz", getFlight("Singapore Airline"), "A01",100,"Approved"),
        // };
-        
+        SwingUtilities.invokeLater(()->{
+        MainGui login = new MainGui(users);
+         login.setVisible(true);
+
+         
+
+        });
         
 
 

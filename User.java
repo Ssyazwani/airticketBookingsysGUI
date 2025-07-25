@@ -46,11 +46,8 @@ public class User {
     }
 
     public boolean Login(String userId, String password){
-        if (userId.equals(userId) && password.equals(password)){
-            return true;
-        } else {
-            return false;
-        }
+        return this.userId.equals(userId) && password.equals(password);
+         
     }
 
     public void Logout(String userId){
