@@ -10,12 +10,15 @@ public class MainGui extends JFrame{
     private JButton buttonLogin;
     private JLabel lblStatus;   
     private User[] users;
+    private Airline airline;
+    private Airline[] airlines;
     private JButton buttonRegister;
 
 
 
-public MainGui(User[] users){
+public MainGui(User[] users, Airline[] airlines){
 this.users = users;
+this.airlines = airlines;
 
 setTitle("Login");
 setSize(300,180);
@@ -63,7 +66,7 @@ buttonLogin.addActionListener( e-> {
     if(loggedIn){
         JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
         lblStatus.setText("Welcome, "+ loggedUser.getName());
-        new BookTicketGui(loggedUser).setVisible(true);
+        new BookTicketGui(loggedUser, airlines[0],airlines).setVisible(true);
         dispose();
 
     } else {
