@@ -6,13 +6,15 @@ public class Airline {
     private Flight[] flights;
     private Ticket[] tickets;
     private User[] users;
+    private int flightCount;
 
 
-    public Airline(String name, int numofFlights, int numofTickets, int numofUsers){
+    public Airline(String name, int numofFlights, int numofTickets, int numofUsers, int flightCount){
         this.name = name;
         this.flights = new Flight[numofFlights];
         this.tickets = new Ticket[numofTickets];
         this.users = new User[numofUsers];
+        this.flightCount =0;
     }
 
     public void setName(String name){
@@ -28,7 +30,12 @@ public class Airline {
     }
 
     public Flight[] getFlights(){
-        return this.flights;
+        Flight[] currentFlights = new Flight[flightCount];
+        for(int i =0; i <flightCount;i++){
+            currentFlights[i] = flights[i];
+        }
+
+        return currentFlights;
     }
 
     public void setTickets(Ticket[] tickets){
@@ -48,8 +55,12 @@ public class Airline {
     }
 
     
-    public Flight addFlight(Flight Flight){
-        return Flight;
+    public void addFlight(Flight flight){
+        if(flightCount < flights.length){
+            flights[flightCount++] = flight;
+        } else {
+            System.out.println("Array full");
+        }
     }
 
     public void updateFlight(Flight Flight){
