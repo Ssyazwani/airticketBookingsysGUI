@@ -71,6 +71,10 @@ public class DisplayFlightgui extends JFrame {
             }
 
             Flight selectedFlight = allFlights[selectedRow];
+
+            Ticket[] flightTickets= java.util.Arrays.stream(tickets).filter(ticket ->
+            ticket.getFlight().equals(selectedFlight)).toArray(Ticket[]::new);
+
             new BookGui(selectedFlight, tickets).setVisible(true);
         });
 
