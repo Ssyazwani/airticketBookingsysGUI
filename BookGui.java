@@ -96,7 +96,7 @@ public class BookGui extends JFrame {
                 );
 
                 new BookManagementGUI(passengerName,passportNum,seatNumber,paymentMethod,confirmationNum,selectedFlight.getflightNumber(),ticket.getStatus()).setVisible(true);
-
+                //arguements much match the bookmanagementgui please check
                 dispose();
                 break;
             }
