@@ -31,7 +31,10 @@ public class Main {
 
         Ticket[] tickets = new Ticket[4];
 
-        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 100, "Confirmed");
+        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Confirmed");
+        tickets[1] =  new Ticket("A02", "", soraFlight1, "A02", 150, "Available");
+        tickets[2] =  new Ticket("A03", "", soraFlight1, "A03", 150, "Available");
+        tickets[3] =  new Ticket("A04", "", soraFlight1, "A04", 150, "Available");
 
         
         User[] users = {
@@ -42,7 +45,7 @@ public class Main {
         
 
         SwingUtilities.invokeLater(()->{
-        MainGui login = new MainGui(users,airline);
+        MainGui login = new MainGui(users,airline,tickets);
          login.setVisible(true);
 
          

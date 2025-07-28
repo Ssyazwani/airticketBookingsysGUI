@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class BookGui extends JFrame {
     private Flight selectedFlight;
@@ -10,11 +11,11 @@ public class BookGui extends JFrame {
         this.tickets = tickets;
 
         setTitle("Book Ticket");
-        setSize(400,250);
+        setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel jpanel = new JPanel(new GridLayout(8,2,5,5));
+        JPanel jpanel = new JPanel(new GridLayout(11,2,7,7));
 
         jpanel.add(new JLabel("Flight Number:"));
         jpanel.add(new JLabel(selectedFlight.getflightNumber()));
@@ -38,6 +39,10 @@ public class BookGui extends JFrame {
         JTextField passengerNameField = new JTextField();
         jpanel.add(passengerNameField);
 
+        jpanel.add(new JLabel("Passport Number/Identification:"));
+        JTextField passportNumberField = new JTextField();
+        jpanel.add(passportNumberField);
+
         jpanel.add(new JLabel("Seat Number:"));
         JComboBox<String> seatDropdown = new JComboBox<>();
 
@@ -48,6 +53,14 @@ public class BookGui extends JFrame {
         }
         jpanel.add(seatDropdown);
 
+        jpanel.add(new JLabel("Payment Method:"));
+        JComboBox<String> paymentDropdown = new JComboBox<>();
+        paymentDropdown.addItem("Credit Card");
+        paymentDropdown.addItem("Debit Card");
+        paymentDropdown.addItem("PayPal");
+        paymentDropdown.addItem("Paynow");
+        jpanel.add(paymentDropdown);
+
        JButton bookButton = new JButton("Book Ticket");
        jpanel.add(new JLabel());
        jpanel.add(bookButton);
@@ -56,19 +69,43 @@ public class BookGui extends JFrame {
 
        bookButton.addActionListener( e ->{
         String passengerName = passengerNameField.getText().trim();
+        String passportNum = passportNumberField.getText().trim();
         String seatNumber = (String) seatDropdown.getSelectedItem();
+        String paymentMethod = (String) paymentDropdown.getSelectedItem();
+
+        Random random = new Random();
+        String Num = String.format("%03d",random.nextInt(1000));
+        char letter = (char) ('A' + random.nextInt(26));
+        String confirmationNum = Num + letter;
+
+
+
 
         for(Ticket ticket:tickets){
-            if(ticket.getseatNumber().equals(seatNumber)){
+            if(ticket.getseatNumber().equals(seatNumber) && ticket.getStatus().equalsIgnoreCase("available")){
                 ticket.setPassenger(passengerName);
                 ticket.setStatus("Confirmed");
-                JOptionPane.showMessageDialog(this, "Booked for " + passengerName);
-                break;
+                
+                JOptionPane.showMessageDialog(this, 
+                "Booking Confirmed!\n" +
+                "Booking Confirmation Num :" + confirmationNum + "\n" +
+                "Passenger Name: "+ passengerName +"\n" +
+                "Passport/ID: "+ passportNum +"\n" +
+                "Seat: "+ seatNumber +"\n" +
+                "Payment: "+ paymentMethod +"\n" 
+                );
 
+                new BookManagementGUI(passengerName,passportNum,seatNumber,paymentMethod,confirmationNum,selectedFlight.getflightNumber(),ticket.getStatus()).setVisible(true);
+
+                dispose();
+                break;
             }
+            
         }
 
-        setVisible(true);
+        
+
+       
        });
 
 

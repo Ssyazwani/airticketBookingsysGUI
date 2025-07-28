@@ -17,10 +17,10 @@ public class MainGui extends JFrame{
 
 
 
-public MainGui(User[] users, Airline[] airlines){
+public MainGui(User[] users, Airline[] airlines, Ticket[] tickets){
 this.users = users;
 this.airlines = airlines;
-this.tickets = new Ticket[0];
+this.tickets = tickets;
 
 setTitle("Login");
 setSize(300,180);
