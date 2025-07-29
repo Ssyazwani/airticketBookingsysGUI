@@ -7,7 +7,7 @@ Core Features (Minimum Viable Product, MVP)
 The following features are crucial for a minimum viable product (MVP). Failure to implement
 these will result in not passing the project:
 
-On the user side:
+## User Side:
 1. User Registration and Login: Allow users to create an account and log in to access the booking
 functionality.
 2. Flight Listing: Display a list of available flights with details like airline, departure time, arrival
@@ -19,11 +19,11 @@ cancelling bookings.
 5. Ticket Confirmation: Print booking confirmation with the ticket details and a unique ticket
 number.
 
-Mapping for User Side:
-MainGui(1) -> RegisterGui(1)
-MainGui(1) -> DisplayFlightgui (2) -> BookGui(3) -> BookManagementGUI (4&5)
+## Mapping For User Side:
+1. MainGui(1) -> RegisterGui(1)
+2. MainGui(1) -> DisplayFlightgui (2) -> BookGui(3) -> BookManagementGUI (4&5)
 
-On the admin side:
+## Admin Side:
 1. Admin Panel: Provide an admin panel with secure access for managing flights, users, and
 bookings.
 2. Flight Management: Allow admins to add, update, or delete flights, manage seat availability, and
@@ -32,9 +32,9 @@ adjust prices.
 account status.
 
 (In Progress)
-Mapping for Admin Side:
-AdminGUI(1)-> FlightAdminGUI(2)
-AdminGUI(1) -> UserAdminGUI(3)
+## Mapping For Admin Side:
+1. AdminGUI(1)-> FlightAdminGUI(2)
+2. AdminGUI(1) -> UserAdminGUI(3)
 
 
 Consider to have:
