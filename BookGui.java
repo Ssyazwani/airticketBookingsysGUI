@@ -3,12 +3,16 @@ import java.awt.*;
 import java.util.Random;
 
 public class BookGui extends JFrame {
+    private User loggedInUser;
     private Flight selectedFlight;
     private Ticket[] tickets;
+    private Airline[] airlines;
 
-    public BookGui(Flight selectedFlight, Ticket[] tickets) {
+    public BookGui(User loggedInUser,Flight selectedFlight, Ticket[] tickets, Airline[] airlines) {
+        this.loggedInUser = loggedInUser;
         this.selectedFlight = selectedFlight;
         this.tickets = tickets;
+        this.airlines= airlines;
 
         setTitle("Book Ticket");
         setSize(500,500);
@@ -85,6 +89,8 @@ public class BookGui extends JFrame {
             if(ticket.getseatNumber().equals(seatNumber) && ticket.getStatus().equalsIgnoreCase("available")){
                 ticket.setPassenger(passengerName);
                 ticket.setStatus("Confirmed");
+                ticket.setPaymentMethod(paymentMethod);
+                ticket.setConfirmationNum(confirmationNum);
                 
                 JOptionPane.showMessageDialog(this, 
                 "Booking Confirmed!\n" +
@@ -95,7 +101,7 @@ public class BookGui extends JFrame {
                 "Payment: "+ paymentMethod +"\n" 
                 );
 
-                new BookManagementGUI(passengerName,passportNum,seatNumber,paymentMethod,confirmationNum,selectedFlight.getflightNumber(),ticket.getStatus()).setVisible(true);
+                new BookManagementGUI(loggedInUser, tickets,selectedFlight, airlines).setVisible(true);
                 //arguements much match the bookmanagementgui please check
                 dispose();
                 break;

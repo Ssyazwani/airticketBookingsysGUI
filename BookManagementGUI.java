@@ -1,55 +1,86 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookManagementGUI extends JFrame{
+    private User user;
+    private Ticket[]  tickets;
+    private Flight flight;
+    private Airline[] airlines;
 
-    public BookManagementGUI(String status,String passengerName, String seatNumber, String confirmationNum,String flightNumber,String passportNum, String paymentMethod){
-        setTitle("Book Ticket");
+    public BookManagementGUI(User user, Ticket[]tickets, Flight flight, Airline[] airlines){
+        this.user = user;
+        this.tickets = tickets;
+        this.flight = flight;
+        this.airlines = airlines;
+
+        setTitle("Manage Your Tickets");
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(7,2,10,10));
+        List<Ticket> managedTickets = Arrays.stream(tickets)
+        .filter( ticket -> ticket.getPassenger() != null && 
+        ticket.getPassenger().equals(user.getName()) &&
+        ticket.getFlight().equals(flight) && 
+       ("Confirmed".equalsIgnoreCase(ticket.getStatus())|| "Cancelled".equalsIgnoreCase(ticket.getStatus()))).collect(Collectors.toList());
 
-        panel.add(new JLabel("Passenger Name:"));
-        panel.add(new JLabel(passengerName));
+        String[] columnNames={"Seat","Flight","Status","Payment Method", "Confirmation Number"};
+        Object[][] data = managedTickets.stream()
+        .map(ticket -> new Object[]{
+            ticket.getseatNumber(),
+            ticket.getFlight().getflightNumber(),
+            ticket.getStatus(),
+            ticket.getPaymentMethod(),
+            ticket.getConfirmationNum()
+        }).toArray(Object[][]::new);
 
-        panel.add(new JLabel("Seat Number:"));
-        panel.add(new JLabel(seatNumber));
+        JTable table = new JTable(data,columnNames);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setRowHeight(25);    
+        JScrollPane scrollPane = new JScrollPane(table);  
 
-        panel.add(new JLabel("Flight Number:"));
-        panel.add(new JLabel(flightNumber));
+        JButton cancelButton = new JButton("Cancel Selected Ticket");
+        JButton backButton = new JButton("Back to Flights");
 
-        panel.add(new JLabel("Payment Method:"));
-        panel.add(new JLabel(paymentMethod));
+        cancelButton.addActionListener((ActionEvent e)->{
+            int selectedRow = table.getSelectedRow();
+            if(selectedRow ==-1){
+                JOptionPane.showMessageDialog(this, "Selected the ticket you want to cancel");
+                return;
+            }
 
-        panel.add(new JLabel("Passport/ID:"));
-        panel.add(new JLabel(passportNum));
+            Ticket selectedTicket = managedTickets.get(selectedRow);
+            if(selectedTicket.getStatus().equalsIgnoreCase("Cancelled")){
+                JOptionPane.showMessageDialog(this, "This ticket is already cancelled");
+                return;
+            }
 
-        panel.add(new JLabel("Status:"));
-        panel.add(new JLabel(status));
+            Ticket Cancelticket = managedTickets.get(selectedRow);
+            user.cancelTicket(Cancelticket);
+            JOptionPane.showMessageDialog(this, "Ticket cancelled");
+            dispose();
+            new BookManagementGUI(user, tickets, flight,airlines).setVisible(true);
+        });
 
-        panel.add(new JLabel("Confirmation Number :"));
-        panel.add(new JLabel(confirmationNum));
+        backButton.addActionListener(e ->{
+            dispose();
+            new DisplayFlightgui(user, airlines[0],airlines,tickets).setVisible(true);
+        });
 
-        String[] columnNames = {"Required", "Information"};
-        Object[][] data ={
-            {"Payment Method",confirmationNum},
-            {"Passport/ID",passengerName},
-            {"Flight Number",passportNum},
-            {"Confirmation Number",flightNumber},
-            {"Seat Number",seatNumber},
-            {"Status",paymentMethod},
-            {"Passenger Name",status}
-        };
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(cancelButton);
+        buttonPanel.add(backButton);
 
-        JTable table = new JTable(data, columnNames);
-        table.setEnabled(false);
-        table.setRowHeight(25);
+        add(scrollPane,BorderLayout.CENTER);
+        add(buttonPanel,BorderLayout.SOUTH);
 
-        JScrollPane scrollPane = new JScrollPane(table);
 
-        add(scrollPane);
+
+       
 
 
     }

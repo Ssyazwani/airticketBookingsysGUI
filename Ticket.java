@@ -6,14 +6,18 @@ public class Ticket {
     private String seatNumber;
     private double price;
     private String status;
+    private String paymentMethod;
+    private String confirmationNum;
 
-    public Ticket (String ticketNumber, String passenger, Flight flight, String seatNumber, double price,String status){
+    public Ticket (String ticketNumber, String passenger, Flight flight, String seatNumber, double price,String status,String paymentmethod, String confirmationNum){
         this.ticketNumber = ticketNumber;
         this.passenger = passenger;
         this.flight = flight;
         this.seatNumber = seatNumber;
         this.price = price;
         this.status = status;
+        this.paymentMethod = paymentmethod;
+        this.confirmationNum = confirmationNum;
     }
 
     public void setTicketNumber(String ticketNumber){
@@ -65,6 +69,38 @@ public class Ticket {
     public String getStatus(){
         return this.status;
     }
+
+    public void setPaymentMethod(String paymentMethod){
+        this.paymentMethod=paymentMethod;
+    }
+
+    public String getPaymentMethod(){
+        return this.paymentMethod;
+    }
+
+    public void setConfirmationNum(String confirmationNum){
+        this.confirmationNum=confirmationNum;
+    }
+
+    public String getConfirmationNum(){
+        return this.confirmationNum;
+    }
+
+    public boolean isAvailable(){
+        return"Available".equalsIgnoreCase(status);
+    }
+
+    public boolean isConfirmed(){
+        return"Confirmed".equalsIgnoreCase(status);
+    }
+
+    public boolean isCancelled(){
+        return"Cancelled".equalsIgnoreCase(status);
+    }
+
+    
+
+
 
 
 // - ticketNumber: String / int

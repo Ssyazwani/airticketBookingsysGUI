@@ -58,7 +58,7 @@ buttonLogin.addActionListener( e-> {
     boolean loggedIn = false;
     User loggedUser = null;
     for (User u: users){
-        if (u != null && u.Login(userId, password)){
+        if (u != null && u.login(userId, password)){
             loggedIn = true;
             loggedUser = u;
             break;

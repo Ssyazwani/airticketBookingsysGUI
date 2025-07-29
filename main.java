@@ -22,7 +22,7 @@ public class Main {
         rep.addFlight(new Flight("RA101","Republic of Airways Airlines","Singapore","Japan","1030","1830"));
         rep.addFlight(new Flight("RA102","Republic of Airways Airlines","Japan","Singapore","0910","2030"));
 
-        Airline[] airline = { sora, jal, elec, rep};
+        Airline[] airline = {sora, jal, elec, rep};
 
         Flight soraFlight1 = sora.getFlights()[0];
         Flight soraFlight2 = sora.getFlights()[1];
@@ -31,10 +31,10 @@ public class Main {
 
         Ticket[] tickets = new Ticket[4];
 
-        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Confirmed");
-        tickets[1] =  new Ticket("A02", "", soraFlight1, "A02", 150, "Available");
-        tickets[2] =  new Ticket("A03", "", soraFlight1, "A03", 150, "Available");
-        tickets[3] =  new Ticket("A04", "", soraFlight1, "A04", 150, "Available");
+        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Confirmed","Credit Card","Special Case");
+        tickets[1] =  new Ticket("A02", "", soraFlight1, "A02", 150, "Available","Credit Card","Special Case");
+        tickets[2] =  new Ticket("A03", "", soraFlight1, "A03", 150, "Available","Credit Card","Special Case");
+        tickets[3] =  new Ticket("A04", "", soraFlight1, "A04", 150, "Available","Credit Card","Special Case");
 
         
         User[] users = {

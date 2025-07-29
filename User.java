@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String userId;
     private String name;
     private String email;
     private String password;
+    private List<Ticket> canceledTickets = new ArrayList<>();
 
     public User( String userId, String name,String email,String password){
         this.userId = userId;
@@ -45,8 +49,8 @@ public class User {
         return this.password;
     }
 
-    public boolean Login(String userId, String password){
-        return this.userId.equals(userId) && password.equals(password);
+    public boolean login(String userId, String password){
+        return this.userId.equals(userId) && this.password.equals(password);
          
     }
 
@@ -55,11 +59,30 @@ public class User {
     }
 
     public boolean bookTicket(Ticket ticket){
-        return true;
+        if(ticket.isAvailable()){
+            ticket.setPassenger(this.name);
+            ticket.setStatus("Confirmed");
+            return true;
+        }
+
+        return false;
     }
 
     public void cancelTicket(Ticket ticket){
+        if(ticket.isConfirmed() && ticket.getPassenger().equals((this.name))){
+        ticket.setStatus("Available");
+        ticket.setPassenger(null);
+        ticket.setPaymentMethod(null);
+        ticket.setConfirmationNum(null);
 
+    }
+      canceledTickets.add(ticket);
+
+
+}
+
+   public List<Ticket> getCanceledTickets(){
+        return canceledTickets;
     }
 
 

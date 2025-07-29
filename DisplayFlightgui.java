@@ -75,7 +75,7 @@ public class DisplayFlightgui extends JFrame {
             Ticket[] flightTickets= java.util.Arrays.stream(tickets).filter(ticket ->
             ticket.getFlight().equals(selectedFlight)).toArray(Ticket[]::new);
 
-            new BookGui(selectedFlight, tickets).setVisible(true);
+            new BookGui(loggedinUser,selectedFlight, tickets,airlines).setVisible(true);
         });
 
 
