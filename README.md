@@ -1,4 +1,4 @@
-# testinggui
+# GUI Project
 Mini Project for ET0885
 
 Develop an Air-ticket Booking System in Java.
@@ -19,6 +19,10 @@ cancelling bookings.
 5. Ticket Confirmation: Print booking confirmation with the ticket details and a unique ticket
 number.
 
+Mapping for User Side:
+MainGui(1) -> RegisterGui(1)
+MainGui(1) -> DisplayFlightgui (2) -> BookGui(3) -> BookManagementGUI (4&5)
+
 On the admin side:
 1. Admin Panel: Provide an admin panel with secure access for managing flights, users, and
 bookings.
@@ -26,6 +30,11 @@ bookings.
 adjust prices.
 3. User Management: Enable admins to view and manage user accounts, including user details and
 account status.
+
+(In Progress)
+Mapping for Admin Side:
+AdminGUI(1)-> FlightAdminGUI(2)
+AdminGUI(1) -> UserAdminGUI(3)
 
 
 Consider to have:
