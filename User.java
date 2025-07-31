@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String password;
     private List<Ticket> canceledTickets = new ArrayList<>();
+  
 
     public User( String userId, String name,String email,String password){
         this.userId = userId;
@@ -49,6 +50,8 @@ public class User {
         return this.password;
     }
 
+   
+
     public boolean login(String userId, String password){
         return this.userId.equals(userId) && this.password.equals(password);
          
@@ -60,6 +63,7 @@ public class User {
 
     public boolean bookTicket(Ticket ticket){
         if(ticket.isAvailable()){
+            ticket.setOwner(this);
             ticket.setPassenger(this.name);
             ticket.setStatus("Confirmed");
             return true;
@@ -69,8 +73,8 @@ public class User {
     }
 
     public void cancelTicket(Ticket ticket){
-        if(ticket.isConfirmed() && ticket.getPassenger().equals((this.name))){
-        ticket.setStatus("Available");
+        if(ticket.isConfirmed() && ticket.getOwner() != null && ticket.getOwner().equals((this))){
+        ticket.setStatus("Cancelled");
         ticket.setPassenger(null);
         ticket.setPaymentMethod(null);
         ticket.setConfirmationNum(null);

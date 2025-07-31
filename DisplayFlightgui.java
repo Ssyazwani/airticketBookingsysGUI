@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 public class DisplayFlightgui extends JFrame {
@@ -6,6 +8,7 @@ public class DisplayFlightgui extends JFrame {
     private Airline airline;
     private Airline[] airlines;
     private Ticket[] tickets;
+    private Flight selectedFlight;
 
     public DisplayFlightgui(User user, Airline airline, Airline[] airlines,Ticket[] tickets){
         this.loggedinUser = user;
@@ -58,10 +61,14 @@ public class DisplayFlightgui extends JFrame {
         }
 
         JTable table = new JTable(data,columnNames);
-        add(new JScrollPane(table));
+        add(new JScrollPane(table),BorderLayout.CENTER);
 
         JButton bookButton = new JButton("Book Ticket");
-        add(bookButton,BorderLayout.SOUTH);
+        JButton backButton = new JButton("See Tickets");
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(backButton);
+        buttonPanel.add(bookButton);
+        add(buttonPanel,BorderLayout.SOUTH);
 
         bookButton.addActionListener(e -> {
             int selectedRow = table.getSelectedRow();
@@ -76,6 +83,11 @@ public class DisplayFlightgui extends JFrame {
             ticket.getFlight().equals(selectedFlight)).toArray(Ticket[]::new);
 
             new BookGui(loggedinUser,selectedFlight, tickets,airlines).setVisible(true);
+        });
+
+          backButton.addActionListener(e ->{
+            dispose();
+            new BookManagementGUI(loggedinUser, tickets,selectedFlight, airlines).setVisible(true);
         });
 
 

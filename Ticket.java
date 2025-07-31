@@ -8,8 +8,9 @@ public class Ticket {
     private String status;
     private String paymentMethod;
     private String confirmationNum;
+    private User owner;
 
-    public Ticket (String ticketNumber, String passenger, Flight flight, String seatNumber, double price,String status,String paymentmethod, String confirmationNum){
+    public Ticket (String ticketNumber, String passenger, Flight flight, String seatNumber, double price,String status,String paymentmethod, String confirmationNum, User owner){
         this.ticketNumber = ticketNumber;
         this.passenger = passenger;
         this.flight = flight;
@@ -18,6 +19,7 @@ public class Ticket {
         this.status = status;
         this.paymentMethod = paymentmethod;
         this.confirmationNum = confirmationNum;
+        this.owner = owner;
     }
 
     public void setTicketNumber(String ticketNumber){
@@ -98,7 +100,13 @@ public class Ticket {
         return"Cancelled".equalsIgnoreCase(status);
     }
 
-    
+     public void setOwner(User owner){
+        this.owner = owner;
+    }
+
+    public User getOwner(){
+        return this.owner;
+    }
 
 
 

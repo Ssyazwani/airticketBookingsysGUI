@@ -87,6 +87,7 @@ public class BookGui extends JFrame {
 
         for(Ticket ticket:tickets){
             if(ticket.getseatNumber().equals(seatNumber) && ticket.getStatus().equalsIgnoreCase("available")){
+                ticket.setOwner(loggedInUser);
                 ticket.setPassenger(passengerName);
                 ticket.setStatus("Confirmed");
                 ticket.setPaymentMethod(paymentMethod);
@@ -102,7 +103,7 @@ public class BookGui extends JFrame {
                 );
 
                 new BookManagementGUI(loggedInUser, tickets,selectedFlight, airlines).setVisible(true);
-                //arguements much match the bookmanagementgui please check
+                
                 dispose();
                 break;
             }

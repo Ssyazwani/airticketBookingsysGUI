@@ -23,10 +23,10 @@ public class BookManagementGUI extends JFrame{
         setLocationRelativeTo(null);
 
         List<Ticket> managedTickets = Arrays.stream(tickets)
-        .filter( ticket -> ticket.getPassenger() != null && 
-        ticket.getPassenger().equals(user.getName()) &&
+        .filter( ticket -> ticket.getOwner() != null && 
+        ticket.getOwner().equals(user) &&
         ticket.getFlight().equals(flight) && 
-       ("Confirmed".equalsIgnoreCase(ticket.getStatus())|| "Cancelled".equalsIgnoreCase(ticket.getStatus()))).collect(Collectors.toList());
+       ("Confirmed".equalsIgnoreCase(ticket.getStatus())||"Cancelled".equalsIgnoreCase(ticket.getStatus()))).collect(Collectors.toList());
 
         String[] columnNames={"Seat","Flight","Status","Payment Method", "Confirmation Number"};
         Object[][] data = managedTickets.stream()

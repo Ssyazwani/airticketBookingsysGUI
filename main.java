@@ -1,3 +1,8 @@
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -24,24 +29,29 @@ public class Main {
 
         Airline[] airline = {sora, jal, elec, rep};
 
+        List<Flight> flightList = new ArrayList<>();
+        for(Airline a : airline){
+            flightList.addAll(Arrays.asList(a.getFlights()));
+        }
+
         Flight soraFlight1 = sora.getFlights()[0];
         Flight soraFlight2 = sora.getFlights()[1];
         Flight soraFlight3 = sora.getFlights()[2];
         Flight soraFlight4 = sora.getFlights()[3];
 
+        User minami = new User("MinamiH", "Minami", "awesomepossum@gmail.com", "dumbo123");
+        User satomi = new User("SatomiI", "Satomi", "amazingSatomi@gmail.com", "passwordo123");
+        User[] users = {minami,satomi};
+
+
         Ticket[] tickets = new Ticket[4];
 
-        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Confirmed","Credit Card","Special Case");
-        tickets[1] =  new Ticket("A02", "", soraFlight1, "A02", 150, "Available","Credit Card","Special Case");
-        tickets[2] =  new Ticket("A03", "", soraFlight1, "A03", 150, "Available","Credit Card","Special Case");
-        tickets[3] =  new Ticket("A04", "", soraFlight1, "A04", 150, "Available","Credit Card","Special Case");
+        tickets[0] =  new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami);
+        tickets[1] =  new Ticket("A02", "", soraFlight1, "A02", 150, "Available","Credit Card","Special Case",null);
+        tickets[2] =  new Ticket("A03", "", soraFlight1, "A03", 150, "Available","Credit Card","Special Case",null);
+        tickets[3] =  new Ticket("A04", "", soraFlight1, "A04", 150, "Available","Credit Card","Special Case",null);
 
-        
-        User[] users = {
-             new User("MinamiH", "Minami", "awesomepossum@gmail.com", "dumbo123"),
-             new User("SatomiI", "Satomi", "amazingSatomi@gmail.com", "passwordo123"),
-        };
-
+    
         
 
         SwingUtilities.invokeLater(()->{
