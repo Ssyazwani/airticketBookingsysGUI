@@ -1,7 +1,7 @@
+
 import javax.swing.*;
 import java.awt.*;
 
-
-public class UserAdminGUI extends JFrame{
+public class UserFormDialog extends JFrame{
     
 }
