@@ -25,8 +25,8 @@ public class FlightAdminGUI extends JFrame {
             f.getDepartureTime()
         }).toArray(Object[][]::new);
 
-        JTable flighTable = new JTable(data,columns);
-        JScrollPane scrollPane = new JScrollPane(flighTable);
+        JTable flightTable = new JTable(data,columns);
+        JScrollPane scrollPane = new JScrollPane(flightTable);
 
         JButton addButton = new JButton("Add Flight");
         JButton editButton = new JButton("Edit Flight");
@@ -41,6 +41,32 @@ public class FlightAdminGUI extends JFrame {
             }
         });
 
+        editButton.addActionListener(e ->{
+            int row = flightTable.getSelectedRow();
+            if(row == -1){
+                JOptionPane.showMessageDialog(this, "Select a flight to edit");
+                return;
+            }
+
+            Flight Editflight = flights.get(row);
+            FlightFormDialog dialog = new FlightFormDialog(this, Editflight);
+            dialog.setVisible(true);
+            if(dialog.isSaved()){
+
+            }
+        });
+
+            deleteButton.addActionListener(e ->{
+            int row = flightTable.getSelectedRow();
+            if(row == -1){
+                JOptionPane.showMessageDialog(this, "Select a flight to delete");
+                return;
+            }
+
+           flights.remove(row);
+
+        });
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(addButton);
@@ -49,8 +75,6 @@ public class FlightAdminGUI extends JFrame {
 
         add(scrollPane,BorderLayout.CENTER);
         add(buttonPanel,BorderLayout.SOUTH);
-
-
 
 
 
