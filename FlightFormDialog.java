@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-public class FlightFormDialog extends JFrame {
+public class FlightFormDialog extends JDialog {
     private boolean saved = false;
     private Flight flight;
 
-    public FlightFormDialog(Flight existingFlight){
+    public FlightFormDialog(Frame ownder, Flight existingFlight){
 
         setTitle("Flight Editor");
         setSize(500,500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JTextField flightNumberField = new JTextField();

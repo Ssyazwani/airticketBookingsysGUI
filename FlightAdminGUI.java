@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +8,8 @@ import java.util.Arrays;
 
 public class FlightAdminGUI extends JFrame {
     private List<Flight> flights;
+    private DefaultTableModel tableModel;
+    private JTable flightTable;
 
     public FlightAdminGUI(List<Flight> flights){
         this.flights = flights;
@@ -15,18 +19,12 @@ public class FlightAdminGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        String[] columns = {};
-        Object[][]data = flights.stream().map( f -> new Object[]{
-            f.getflightNumber(),
-            f.getAirline(),
-            f.getSource(),
-            f.getSource(),
-            f.getArrivalTime(),
-            f.getDepartureTime()
-        }).toArray(Object[][]::new);
-
-        JTable flightTable = new JTable(data,columns);
+        String[] columns = {"Flight Number", "Airline","Source","Destinaton","Arrival Time","Departure Time"};
+        tableModel = new DefaultTableModel(columns,0);
+        flightTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(flightTable);
+
+        refreshTable();
 
         JButton addButton = new JButton("Add Flight");
         JButton editButton = new JButton("Edit Flight");
@@ -64,6 +62,7 @@ public class FlightAdminGUI extends JFrame {
             }
 
            flights.remove(row);
+           tableModel.removeRow(row);
 
         });
 
@@ -77,7 +76,37 @@ public class FlightAdminGUI extends JFrame {
         add(buttonPanel,BorderLayout.SOUTH);
 
 
-
     }
+
+    
+        private void refreshTable(){
+            tableModel.setRowCount(0);
+            for(Flight f: flights){
+                addFlightToTable(f);
+            }
+        }
+
+
+        
+        private void addFlightToTable(Flight flight){
+            tableModel.addRow(new Object[]{
+                flight.getflightNumber(),
+                flight.getAirline(),
+                flight.getSource(),
+                flight.getDestination(),
+                flight.getArrivalTime(),
+                flight.getDepartureTime(),
+            });
+        }
+
+        private void updateFlightInTable(int row, Flight flight){
+            tableModel.setValueAt(flight.getflightNumber(),row,0);
+            tableModel.setValueAt(flight.getAirline(),row,1);
+            tableModel.setValueAt(flight.getSource(),row,2);
+            tableModel.setValueAt(flight.getDestination(),row,3);
+            tableModel.setValueAt(flight.getArrivalTime(),row,4);
+            tableModel.setValueAt(flight.getDepartureTime(),row,5);
+        }
+
 
 }

@@ -2,11 +2,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class UserFormDialog extends JFrame{
+public class UserFormDialog extends JDialog{
     private boolean saved = false;
     private User user;;
 
-    public UserFormDialog(final User user){
+    public UserFormDialog(Frame owner, User user){
 
         setTitle("User Editor");
         setSize(500,500);
@@ -41,7 +41,7 @@ public class UserFormDialog extends JFrame{
 
         saveButton.addActionListener( e -> {
             saved = true;
-            user = new User(usernameField.getText(), 
+            this.user = new User(usernameField.getText(), 
             fullNameField.getText(),
             emailField.getText(),
             passwordField.getText());
