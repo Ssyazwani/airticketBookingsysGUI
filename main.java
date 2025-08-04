@@ -42,7 +42,9 @@ public class Main {
         User minami = new User("MinamiH", "Minami", "awesomepossum@gmail.com", "dumbo123");
         User satomi = new User("SatomiI", "Satomi", "amazingSatomi@gmail.com", "passwordo123");
         User[] users = {minami,satomi};
-
+        
+        List<User> userList = new ArrayList<>(Arrays.asList(users));
+      
 
         Ticket[] tickets = new Ticket[4];
 
@@ -55,7 +57,7 @@ public class Main {
         
 
         SwingUtilities.invokeLater(()->{
-        MainGui login = new MainGui(users,airline,tickets);
+        MainGui login = new MainGui(userList,airline,tickets,flightList);
          login.setVisible(true);
 
          

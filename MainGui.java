@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -14,13 +15,16 @@ public class MainGui extends JFrame{
     private Airline[] airlines;
     private Ticket[] tickets;
     private JButton buttonRegister;
+    private List<Flight> flights;
+    private List<User> userList;
 
 
 
-public MainGui(User[] users, Airline[] airlines, Ticket[] tickets){
-this.users = users;
+public MainGui(List<User> userList, Airline[] airlines, Ticket[] tickets,List<Flight> flights){
+this.userList = userList;
 this.airlines = airlines;
 this.tickets = tickets;
+this.flights = flights;
 
 setTitle("Login");
 setSize(300,180);
@@ -32,6 +36,7 @@ textPassword = new JPasswordField(15);
 buttonLogin = new JButton("Login");
 lblStatus = new JLabel(" ");
 buttonRegister = new JButton("Register");
+JButton buttonAdmin = new JButton("Admin");
 
 JPanel panel = new JPanel(new GridLayout(4,2));
 panel.add(new JLabel("User ID:"));
@@ -43,6 +48,7 @@ panel.add(textPassword);
 JPanel bottomPanel = new JPanel();
 bottomPanel.add(buttonLogin);
 bottomPanel.add(buttonRegister);
+bottomPanel.add(buttonAdmin);
 
 JPanel statusPanel = new JPanel();
 statusPanel.add(lblStatus);
@@ -81,6 +87,12 @@ buttonLogin.addActionListener( e-> {
  buttonRegister.addActionListener( e ->{
     new RegisterGui(users).setVisible(true);
  });
+
+ buttonAdmin.addActionListener(e ->{
+            dispose();
+            new AdminGUI(userList, flights, tickets).setVisible(true);
+        });
+
 
 }
 }

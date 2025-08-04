@@ -10,6 +10,7 @@ public class UserAdminGUI extends JFrame{
     private List<User> users;
 
     public UserAdminGUI(List<User> users){
+        this.users = users;
         setTitle("User Management");
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
