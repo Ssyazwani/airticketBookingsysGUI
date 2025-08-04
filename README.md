@@ -33,9 +33,9 @@ account status.
 
 (In Progress)
 ## Mapping For Admin Side:
-1. AdminGUI(1)-> FlightAdminGUI(2) -> FlightFormDialog(2)<Pop-up to edit Flight details>
+1. AdminGUI(1) -> AdminNaviGUI -> FlightAdminGUI(2) -> FlightFormDialog(2)
 
-2. AdminGUI(1) -> UserAdminGUI(3) -> UserFormDialog(3)<Pop-up to edit User particulars>
+2. AdminGUI(1) -> AdminNaviGUI -> UserAdminGUI(3) -> UserFormDialog(3)
 
 
 Consider to have:
