@@ -17,6 +17,7 @@ public class MainGui extends JFrame{
     private JButton buttonRegister;
     private List<Flight> flights;
     private List<User> userList;
+    private User loggedUser;
 
 
 
@@ -63,7 +64,7 @@ buttonLogin.addActionListener( e-> {
 
     boolean loggedIn = false;
     User loggedUser = null;
-    for (User u: users){
+    for (User u: userList){
         if (u != null && u.login(userId, password)){
             loggedIn = true;
             loggedUser = u;
