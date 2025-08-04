@@ -10,6 +10,7 @@ public class FlightAdminGUI extends JFrame {
     private List<Flight> flights;
     private DefaultTableModel tableModel;
     private JTable flightTable;
+    private List<User> users;
 
     public FlightAdminGUI(List<Flight> flights){
         this.flights = flights;
@@ -29,6 +30,7 @@ public class FlightAdminGUI extends JFrame {
         JButton addButton = new JButton("Add Flight");
         JButton editButton = new JButton("Edit Flight");
         JButton deleteButton = new JButton("Delete Flight");
+        JButton userButton = new JButton("User Editor");
 
         addButton.addActionListener( e -> {
             FlightFormDialog dialog = new FlightFormDialog(this,null);
@@ -66,11 +68,20 @@ public class FlightAdminGUI extends JFrame {
 
         });
 
+        userButton.addActionListener(e ->{
+            dispose();
+            new UserAdminGUI(users).setVisible(true);
+        });
+
+
+
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
+        buttonPanel.add(userButton);
 
         add(scrollPane,BorderLayout.CENTER);
         add(buttonPanel,BorderLayout.SOUTH);

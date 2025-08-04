@@ -7,8 +7,10 @@ public class UserFormDialog extends JDialog{
     private User user;;
 
     public UserFormDialog(Frame owner, User user){
+         super(owner,"User Editor",true);
+        this.user= user;
 
-        setTitle("User Editor");
+        
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

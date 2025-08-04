@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class UserAdminGUI extends JFrame{
     private List<User> users;
+     private List<Flight> flights;
 
     public UserAdminGUI(List<User> users){
         this.users = users;
@@ -32,6 +33,7 @@ public class UserAdminGUI extends JFrame{
         JButton activateButton = new JButton("Activate");
         JButton deactivateButton = new JButton("Deactivate");
         JButton editButton = new JButton("Edit User");
+        JButton flightButton = new JButton("To Flight Editor");
 
         activateButton.addActionListener(e ->{
             int row = userTable.getSelectedRow();
@@ -58,7 +60,7 @@ public class UserAdminGUI extends JFrame{
 
         });
 
-         deactivateButton.addActionListener(e ->{
+         editButton.addActionListener(e ->{
             int row = userTable.getSelectedRow();
             if(row == -1){
                 JOptionPane.showMessageDialog(this, "Select a flight to delete");
@@ -70,10 +72,17 @@ public class UserAdminGUI extends JFrame{
 
         });
 
+        flightButton.addActionListener(e ->{
+            dispose();
+            new FlightAdminGUI(flights).setVisible(true);
+        });
+
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(activateButton);
         buttonPanel.add(deactivateButton);
         buttonPanel.add(editButton);
+        buttonPanel.add(flightButton);
 
         add(scrollPane,BorderLayout.CENTER);
         add(buttonPanel,BorderLayout.SOUTH);
