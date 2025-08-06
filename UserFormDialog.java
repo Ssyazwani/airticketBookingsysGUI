@@ -7,13 +7,13 @@ public class UserFormDialog extends JDialog{
     private User user;;
 
     public UserFormDialog(Frame owner, User user){
-         super(owner,"User Editor",true);
+        super(owner,"User Editor",true);
         this.user= user;
 
         
-        setSize(500,500);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
 
         JTextField usernameField = new JTextField();
         JTextField fullNameField = new JTextField();

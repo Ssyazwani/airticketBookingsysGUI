@@ -10,10 +10,11 @@ public class BookManagementGUI extends JFrame{
     private Ticket[]  tickets;
     private Flight flight;
     private Airline[] airlines;
+    private List<Ticket> tickets2;
 
-    public BookManagementGUI(User user, Ticket[]tickets, Flight flight, Airline[] airlines){
+    public BookManagementGUI(User user, List<Ticket> tickets2, Flight flight, Airline[] airlines){
         this.user = user;
-        this.tickets = tickets;
+        this.tickets2 = tickets2;
         this.flight = flight;
         this.airlines = airlines;
 
@@ -22,7 +23,7 @@ public class BookManagementGUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        List<Ticket> managedTickets = Arrays.stream(tickets)
+        List<Ticket> managedTickets = tickets2.stream()
         .filter( ticket -> ticket.getOwner() != null && 
         ticket.getOwner().equals(user) &&
         ticket.getFlight().equals(flight) && 
@@ -63,12 +64,12 @@ public class BookManagementGUI extends JFrame{
             user.cancelTicket(Cancelticket);
             JOptionPane.showMessageDialog(this, "Ticket cancelled");
             dispose();
-            new BookManagementGUI(user, tickets, flight,airlines).setVisible(true);
+            new BookManagementGUI(user, tickets2, flight,airlines).setVisible(true);
         });
 
         backButton.addActionListener(e ->{
             dispose();
-            new DisplayFlightgui(user, airlines[0],airlines,tickets).setVisible(true);
+            new DisplayFlightgui(user, airlines[0],airlines,tickets2).setVisible(true);
         });
 
         JPanel buttonPanel = new JPanel();

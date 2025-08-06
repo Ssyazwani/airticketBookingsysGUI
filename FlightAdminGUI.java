@@ -12,8 +12,9 @@ public class FlightAdminGUI extends JFrame {
     private JTable flightTable;
     private List<User> users;
 
-    public FlightAdminGUI(List<Flight> flights){
+    public FlightAdminGUI(List<Flight> flights, List<User> users){
         this.flights = flights;
+        this.users = users;
 
         setTitle("Manage Flights");
         setSize(500,500);
@@ -70,7 +71,7 @@ public class FlightAdminGUI extends JFrame {
 
         userButton.addActionListener(e ->{
             dispose();
-            new UserAdminGUI(users).setVisible(true);
+            new UserAdminGUI(users,flights).setVisible(true);
         });
 
 

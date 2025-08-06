@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 public class RegisterGui extends JFrame{
     private JTextField userIdArea;
@@ -7,9 +10,9 @@ public class RegisterGui extends JFrame{
     private JTextField emailArea;
     private JPasswordField passwordArea;
     private JButton registerButton;
-    private User[] users;
+    private List<User> users;
 
-    public RegisterGui(User[]users){
+    public RegisterGui(List<User> users){
         this.users = users;
 
         setTitle("Register");
@@ -49,21 +52,9 @@ public class RegisterGui extends JFrame{
                 return;
             }
 
-            boolean added = false;
-            for(int i =0; i <users.length; i++){
-                if(users[i]== null){
-                    users[i] = new User(userId,name,email,password);
-                    added = true;
-                    break;
-                }
-            }
-
-            if(added){
-                JOptionPane.showMessageDialog(this, "Registeration successful");
-                dispose();
-            } else{
-                JOptionPane.showMessageDialog(this, "User list is full. Sorry");
-            }
+            users.add(new User(userId, name, email, password));
+            JOptionPane.showMessageDialog(this, "Registration successful");
+            dispose();
         });
 
 

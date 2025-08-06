@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
+import java.util.List;
 
 public class DisplayFlightgui extends JFrame {
     private User loggedinUser;
@@ -9,12 +10,13 @@ public class DisplayFlightgui extends JFrame {
     private Airline[] airlines;
     private Ticket[] tickets;
     private Flight selectedFlight;
+    private List<Ticket> tickets2;
 
-    public DisplayFlightgui(User user, Airline airline, Airline[] airlines,Ticket[] tickets){
+    public DisplayFlightgui(User user, Airline airline, Airline[] airlines,List<Ticket> tickets2){
         this.loggedinUser = user;
         this.airline = airline;
         this.airlines = airlines;
-        this.tickets = tickets;
+        this.tickets2 = tickets2;
 
         setTitle("Available Flights");
         setSize(600,400);
@@ -57,7 +59,7 @@ public class DisplayFlightgui extends JFrame {
                 data[i][3] = flight.getDestination();
                 data[i][4] = flight.getDepartureTime();
                 data[i][5] = flight.getArrivalTime();
-                data[i][6] = "$150";
+                data[i][6] = "150";
         }
 
         JTable table = new JTable(data,columnNames);
@@ -79,15 +81,15 @@ public class DisplayFlightgui extends JFrame {
 
             Flight selectedFlight = allFlights[selectedRow];
 
-            Ticket[] flightTickets= java.util.Arrays.stream(tickets).filter(ticket ->
+            Ticket[] flightTickets= tickets2.stream().filter(ticket ->
             ticket.getFlight().equals(selectedFlight)).toArray(Ticket[]::new);
 
-            new BookGui(loggedinUser,selectedFlight, tickets,airlines).setVisible(true);
+            new BookGui(loggedinUser,selectedFlight, tickets2,airlines).setVisible(true);
         });
 
           backButton.addActionListener(e ->{
             dispose();
-            new BookManagementGUI(loggedinUser, tickets,selectedFlight, airlines).setVisible(true);
+            new BookManagementGUI(loggedinUser, tickets2,selectedFlight, airlines).setVisible(true);
         });
 
 

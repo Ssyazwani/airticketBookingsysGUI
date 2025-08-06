@@ -6,11 +6,13 @@ import java.util.ArrayList;
 public class AdminGUI extends JFrame{
         private List<User> users;
         private List<Flight> flights;
+        private List<Ticket> tickets2;
         private Ticket[] tickets;
+    
 
-        public AdminGUI(List<User> users,List<Flight> flights,Ticket[] tickets){
+        public AdminGUI(List<User> users,List<Flight> flights,List<Ticket> tickets2){
         this.flights = flights;
-        this.tickets = tickets;
+        this.tickets2 = tickets2;
         this.users = users;
         setTitle("Admin Login");
         setSize(500,500);
@@ -44,7 +46,7 @@ public class AdminGUI extends JFrame{
 
     if ("admin".equals(userId) && "admin".equals(password)){
         JOptionPane.showMessageDialog(this, "Login Successfull");
-        new AdminNaviGUI(users, flights, tickets).setVisible(true);
+        new AdminNaviGUI(users, flights, tickets2).setVisible(true);
         dispose();
     } else {
         JOptionPane.showMessageDialog(this, "Invalid");

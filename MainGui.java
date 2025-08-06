@@ -18,13 +18,14 @@ public class MainGui extends JFrame{
     private List<Flight> flights;
     private List<User> userList;
     private User loggedUser;
+    private List<Ticket> tickets2;
 
 
 
-public MainGui(List<User> userList, Airline[] airlines, Ticket[] tickets,List<Flight> flights){
+public MainGui(List<User> userList, Airline[] airlines, List<Ticket> tickets2,List<Flight> flights){
 this.userList = userList;
 this.airlines = airlines;
-this.tickets = tickets;
+this.tickets2 = tickets2;
 this.flights = flights;
 
 setTitle("Login");
@@ -75,7 +76,7 @@ buttonLogin.addActionListener( e-> {
     if(loggedIn){
         JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
         lblStatus.setText("Welcome, "+ loggedUser.getName());
-        new DisplayFlightgui(loggedUser, airlines[0],airlines,tickets).setVisible(true);
+        new DisplayFlightgui(loggedUser, airlines[0],airlines,tickets2).setVisible(true);
         dispose();
 
     } else {
@@ -86,12 +87,12 @@ buttonLogin.addActionListener( e-> {
 });
   
  buttonRegister.addActionListener( e ->{
-    new RegisterGui(users).setVisible(true);
+    new RegisterGui(userList).setVisible(true);
  });
 
  buttonAdmin.addActionListener(e ->{
             dispose();
-            new AdminGUI(userList, flights, tickets).setVisible(true);
+            new AdminGUI(userList, flights, tickets2).setVisible(true);
         });
 
 

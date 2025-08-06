@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 public class AdminNaviGUI extends JFrame {
       private List<User> users;
-        private List<Flight> flights;
-        private Ticket[] tickets;
+      private List<Flight> flights;
+      private List<Ticket> tickets2;
+      private Ticket[] tickets;
 
-    public AdminNaviGUI(List<User> users, List<Flight> flights, Ticket[] tickets){
+    public AdminNaviGUI(List<User> users, List<Flight> flights, List<Ticket> tickets2){
         this.users = users;
         this.flights = flights;
-        this.tickets = tickets;
+        this.tickets2 = tickets2;
         setTitle("Admin Login");
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,13 +29,13 @@ public class AdminNaviGUI extends JFrame {
 
         flightButton.addActionListener(e ->{
             dispose();
-            new FlightAdminGUI(flights).setVisible(true);
+            new FlightAdminGUI(flights, users).setVisible(true);
         });
 
 
         userButton.addActionListener(e ->{
             dispose();
-            new UserAdminGUI(users).setVisible(true);
+            new UserAdminGUI(users, flights).setVisible(true);
         });
 
 

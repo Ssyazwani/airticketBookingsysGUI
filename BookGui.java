@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Random;
 
 public class BookGui extends JFrame {
@@ -7,11 +8,12 @@ public class BookGui extends JFrame {
     private Flight selectedFlight;
     private Ticket[] tickets;
     private Airline[] airlines;
+    private List<Ticket> tickets2;
 
-    public BookGui(User loggedInUser,Flight selectedFlight, Ticket[] tickets, Airline[] airlines) {
+    public BookGui(User loggedInUser,Flight selectedFlight, List<Ticket> tickets2, Airline[] airlines) {
         this.loggedInUser = loggedInUser;
         this.selectedFlight = selectedFlight;
-        this.tickets = tickets;
+        this.tickets2 = tickets2;
         this.airlines= airlines;
 
         setTitle("Book Ticket");
@@ -50,7 +52,7 @@ public class BookGui extends JFrame {
         jpanel.add(new JLabel("Seat Number:"));
         JComboBox<String> seatDropdown = new JComboBox<>();
 
-        for(Ticket ticket : tickets){
+        for(Ticket ticket : tickets2){
             if (ticket.getStatus().equalsIgnoreCase("available")){
                 seatDropdown.addItem(ticket.getseatNumber());
             }
@@ -85,7 +87,7 @@ public class BookGui extends JFrame {
 
 
 
-        for(Ticket ticket:tickets){
+        for(Ticket ticket:tickets2){
             if(ticket.getseatNumber().equals(seatNumber) && ticket.getStatus().equalsIgnoreCase("available")){
                 ticket.setOwner(loggedInUser);
                 ticket.setPassenger(passengerName);
@@ -102,7 +104,7 @@ public class BookGui extends JFrame {
                 "Payment: "+ paymentMethod +"\n" 
                 );
 
-                new BookManagementGUI(loggedInUser, tickets,selectedFlight, airlines).setVisible(true);
+                new BookManagementGUI(loggedInUser, tickets2,selectedFlight, airlines).setVisible(true);
                 
                 dispose();
                 break;

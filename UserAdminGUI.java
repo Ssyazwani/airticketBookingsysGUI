@@ -8,10 +8,11 @@ import java.util.Arrays;
 
 public class UserAdminGUI extends JFrame{
     private List<User> users;
-     private List<Flight> flights;
+    private List<Flight> flights;
 
-    public UserAdminGUI(List<User> users){
+    public UserAdminGUI(List<User> users, List<Flight> flights){
         this.users = users;
+        this.flights = flights;
         setTitle("User Management");
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,12 +39,18 @@ public class UserAdminGUI extends JFrame{
         activateButton.addActionListener(e ->{
             int row = userTable.getSelectedRow();
             if(row == -1){
-                JOptionPane.showMessageDialog(this, "Select a flight to delete");
+                JOptionPane.showMessageDialog(this, "Please select a user to activate");
                 return;
             }
 
-           users.add(null);
-           JOptionPane.showMessageDialog(this, "User activated");
+            User user = users.get(row);
+           if(user.isActive()){
+            JOptionPane.showMessageDialog(this, "User activated");
+           } else {
+            user.setActive(true);
+            JOptionPane.showMessageDialog(this, "User is activated");
+            refreshTableData(columns);
+           }
 
         });
 
@@ -55,26 +62,36 @@ public class UserAdminGUI extends JFrame{
                 return;
             }
 
-           users.remove(e);
-           JOptionPane.showMessageDialog(this, "User activated");
-
+           User user = users.get(row);
+           if(user.isActive()){
+            JOptionPane.showMessageDialog(this, "User activated");
+           } else {
+            user.setActive(true);
+            JOptionPane.showMessageDialog(this, "User is activated");
+            refreshTableData(columns);
+           }
         });
 
          editButton.addActionListener(e ->{
             int row = userTable.getSelectedRow();
             if(row == -1){
-                JOptionPane.showMessageDialog(this, "Select a flight to delete");
+                JOptionPane.showMessageDialog(this, "Please select a user to edit");
                 return;
             }
 
-           //users.edit(e);
-           JOptionPane.showMessageDialog(this, "User activated");
-
+          User user = users.get(row);
+          String name = JOptionPane.showInputDialog(this, "Enter new name: ",user.getName());
+          if (name != null && !name.isEmpty()){
+            user.setName(name);
+            JOptionPane.showMessageDialog(this, "User activated");
+            refreshTableData(columns);
+          }
+           
         });
 
         flightButton.addActionListener(e ->{
             dispose();
-            new FlightAdminGUI(flights).setVisible(true);
+            new FlightAdminGUI(flights, users).setVisible(true);
         });
 
 
@@ -90,4 +107,18 @@ public class UserAdminGUI extends JFrame{
 
 
     }
+
+    private void refreshTableData (String [] columns){
+        Object[][] data = users.stream()
+        .map ( u -> new Object[]{
+            u.getUserId(),
+            u.getName(),
+            u.getEmail()
+        }).toArray(Object[][]::new);
+
+    }
+    
 }
+
+
+
