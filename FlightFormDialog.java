@@ -8,12 +8,16 @@ public class FlightFormDialog extends JDialog {
     private boolean saved = false;
     private Flight flight;
 
-    public FlightFormDialog(Frame ownder, Flight existingFlight){
-
-        setTitle("Flight Editor");
+    public FlightFormDialog(Frame owner, Flight existingFlight){
+        super(owner,"Flight Editor",true);
         setSize(500,500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+
+        setLayout(new BorderLayout(10,10));
+
+        JPanel form = new JPanel(new GridLayout(6,2,5,5));
+   
 
         JTextField flightNumberField = new JTextField();
         JTextField airlineField = new JTextField();
@@ -22,19 +26,28 @@ public class FlightFormDialog extends JDialog {
         JTextField departureTimeField = new JTextField();
         JTextField arrivalTimeField = new JTextField();
 
-        add(new JLabel("Flight Number:")); add (flightNumberField);
-        add(new JLabel("Airline:")); add (airlineField);
-        add(new JLabel("Source:")); add (sourceField);
-        add(new JLabel("Destination:")); add (destinationField);
-        add(new JLabel("Departure Time:")); add (departureTimeField);
-        add(new JLabel("Arrival Time:")); add (arrivalTimeField);
+        form.add(new JLabel("Flight Number:")); 
+        form.add (flightNumberField);
+        form.add(new JLabel("Airline:")); 
+        form.add (airlineField);
+        form.add(new JLabel("Source:"));
+        form.add (sourceField);
+        form.add(new JLabel("Destination:"));
+        form.add (destinationField);
+        form.add(new JLabel("Departure Time:")); 
+        form.add (departureTimeField);
+        form.add(new JLabel("Arrival Time:"));
+        form.add (arrivalTimeField);
 
-
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton saveButton = new JButton("Save");
         JButton cancelButton = new JButton("Cancel");
 
-        add(saveButton);
-        add(cancelButton);
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        add(form,BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         if(existingFlight != null){
             flightNumberField.setText(existingFlight.getflightNumber());

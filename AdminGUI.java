@@ -19,8 +19,8 @@ public class AdminGUI extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout());
-        panel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        JPanel panel = new JPanel(new GridLayout(3,2,10,10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20,20,10,20));
 
         JLabel userLabel = new JLabel("Username:");
         JTextField userField = new JTextField();
@@ -41,8 +41,8 @@ public class AdminGUI extends JFrame{
         add(panel);
 
         loginButton.addActionListener( e-> {
-    String userId = userField.getText();
-    String password = new String(passField.getPassword());
+         String userId = userField.getText();
+         String password = new String(passField.getPassword());
 
     if ("admin".equals(userId) && "admin".equals(password)){
         JOptionPane.showMessageDialog(this, "Login Successfull");

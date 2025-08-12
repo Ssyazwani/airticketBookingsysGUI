@@ -1,5 +1,7 @@
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 public class UserFormDialog extends JDialog{
@@ -9,11 +11,14 @@ public class UserFormDialog extends JDialog{
     public UserFormDialog(Frame owner, User user){
         super(owner,"User Editor",true);
         this.user= user;
-
-        
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400,250);
         setLocationRelativeTo(owner);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setLayout(new BorderLayout(10,10));
+
+        JPanel form = new JPanel(new GridLayout(4,2,5,5));
+   
 
         JTextField usernameField = new JTextField();
         JTextField fullNameField = new JTextField();
@@ -21,17 +26,24 @@ public class UserFormDialog extends JDialog{
         JTextField passwordField= new JTextField();
         
 
-        add(new JLabel("Username:")); add (usernameField);
-        add(new JLabel("Full Name:")); add (fullNameField);
-        add(new JLabel("Email:")); add (emailField);
-        add(new JLabel("Password:")); add (passwordField);
-       
+        form.add(new JLabel("Username:"));
+        form.add (usernameField);
+        form.add(new JLabel("Full Name:"));
+        form.add (fullNameField);
+        form.add(new JLabel("Email:"));
+        form.add (emailField);
+        form.add(new JLabel("Password:"));
+        form.add (passwordField);
 
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JButton saveButton = new JButton("Save");
         JButton cancelButton = new JButton("Cancel");
 
-        add(saveButton);
-        add(cancelButton);
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        add(form,BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         if(user != null){
            usernameField.setText(user.getUserId());
@@ -48,6 +60,7 @@ public class UserFormDialog extends JDialog{
             emailField.getText(),
             passwordField.getText());
         });
+        dispose();
 
         cancelButton.addActionListener( e -> 
         dispose());

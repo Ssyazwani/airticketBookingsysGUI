@@ -39,6 +39,8 @@ public class FlightAdminGUI extends JFrame {
             if (dialog.isSaved()){
                 Flight newFlight = dialog.getFlight();
                 flights.add(newFlight);
+                JOptionPane.showMessageDialog(this, "Flight Added");
+                refreshTable();
             }
         });
 
@@ -53,6 +55,9 @@ public class FlightAdminGUI extends JFrame {
             FlightFormDialog dialog = new FlightFormDialog(this, Editflight);
             dialog.setVisible(true);
             if(dialog.isSaved()){
+                flights.set(row, dialog.getFlight());
+                updateFlightInTable(row, dialog.getFlight());
+                JOptionPane.showMessageDialog(this, "Flight Updated");
 
             }
         });
@@ -66,6 +71,7 @@ public class FlightAdminGUI extends JFrame {
 
            flights.remove(row);
            tableModel.removeRow(row);
+           JOptionPane.showMessageDialog(this, "Flight Deleted");
 
         });
 

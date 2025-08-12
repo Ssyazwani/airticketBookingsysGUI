@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,56 +22,53 @@ public class UserAdminGUI extends JFrame{
 
 
         String[] columns = {"User ID", "Name", "Email", "Status"};
-        Object[][] data = users.stream()
-        .map(u -> new Object[]{
-            u.getUserId(),
-            u.getName(),
-            u.getEmail(),
-            "Active"
-        }).toArray(Object[][] :: new);
 
-        JTable userTable = new JTable(data,columns);
+        DefaultTableModel tableModel = new DefaultTableModel(columns,0);
+        JTable userTable = new JTable(tableModel);
+        refreshTableData(tableModel);
+        // Object[][] data = users.stream()
+        // .map(u -> new Object[]{
+        //     u.getUserId(),
+        //     u.getName(),
+        //     u.getEmail(),
+        //     "Active"
+        // }).toArray(Object[][] :: new);
+
+        // JTable userTable = new JTable(data,columns);
         JScrollPane scrollPane = new JScrollPane(userTable);
 
-        JButton activateButton = new JButton("Activate");
-        JButton deactivateButton = new JButton("Deactivate");
+        JButton addButton = new JButton("Add User");
+        JButton deleteButton = new JButton("Delete User");
         JButton editButton = new JButton("Edit User");
         JButton flightButton = new JButton("To Flight Editor");
 
-        activateButton.addActionListener(e ->{
-            int row = userTable.getSelectedRow();
-            if(row == -1){
-                JOptionPane.showMessageDialog(this, "Please select a user to activate");
-                return;
-            }
+        addButton.addActionListener(e ->{
+           UserFormDialog dialog = new UserFormDialog(this, null);
+           dialog.setVisible(true);
 
-            User user = users.get(row);
-           if(user.isActive()){
-            JOptionPane.showMessageDialog(this, "User activated");
-           } else {
-            user.setActive(true);
-            JOptionPane.showMessageDialog(this, "User is activated");
-            refreshTableData(columns);
+           if(dialog.isSaved()){
+            User newUser = dialog.getUser();
+            users.add(newUser);
+            refreshTableData(tableModel);
+            JOptionPane.showMessageDialog(this, "User added.");
            }
 
         });
 
         
-        deactivateButton.addActionListener(e ->{
+        deleteButton.addActionListener(e ->{
             int row = userTable.getSelectedRow();
             if(row == -1){
                 JOptionPane.showMessageDialog(this, "Select a flight to delete");
                 return;
             }
 
-           User user = users.get(row);
-           if(user.isActive()){
-            JOptionPane.showMessageDialog(this, "User activated");
-           } else {
-            user.setActive(true);
-            JOptionPane.showMessageDialog(this, "User is activated");
-            refreshTableData(columns);
-           }
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this");
+            if(confirm == JOptionPane.YES_OPTION){
+                users.remove(row);
+                refreshTableData(tableModel);
+                JOptionPane.showMessageDialog(this, "User deleted.");
+            }
         });
 
          editButton.addActionListener(e ->{
@@ -79,13 +78,15 @@ public class UserAdminGUI extends JFrame{
                 return;
             }
 
-          User user = users.get(row);
-          String name = JOptionPane.showInputDialog(this, "Enter new name: ",user.getName());
-          if (name != null && !name.isEmpty()){
-            user.setName(name);
-            JOptionPane.showMessageDialog(this, "User activated");
-            refreshTableData(columns);
-          }
+            User existUser = users.get(row);
+            UserFormDialog dialog = new UserFormDialog(this, existUser);
+            dialog.setVisible(true);
+
+            if(dialog.isSaved()){
+                users.set(row,dialog.getUser());
+                refreshTableData(tableModel);
+                JOptionPane.showMessageDialog(this, "User Updated");
+            }
            
         });
 
@@ -96,8 +97,8 @@ public class UserAdminGUI extends JFrame{
 
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(activateButton);
-        buttonPanel.add(deactivateButton);
+        buttonPanel.add(addButton);
+        buttonPanel.add(deleteButton);
         buttonPanel.add(editButton);
         buttonPanel.add(flightButton);
 
@@ -108,13 +109,16 @@ public class UserAdminGUI extends JFrame{
 
     }
 
-    private void refreshTableData (String [] columns){
-        Object[][] data = users.stream()
-        .map ( u -> new Object[]{
-            u.getUserId(),
-            u.getName(),
-            u.getEmail()
-        }).toArray(Object[][]::new);
+    private void refreshTableData (DefaultTableModel tableModel){
+      tableModel.setRowCount(0);
+
+        for(User u : users){
+            tableModel.addRow(new Object[]{
+                u.getUserId(),
+                u.getName(),
+                u.getEmail()
+            });
+        }
 
     }
     
