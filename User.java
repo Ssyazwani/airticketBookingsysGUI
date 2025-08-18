@@ -58,6 +58,9 @@ public class User {
     }
 
     public void Logout(String userId){
+    	if(this.userId.equals(userId)) {
+    		System.out.println("User "+ userId + "logged out");
+    	}
         
     }
 
