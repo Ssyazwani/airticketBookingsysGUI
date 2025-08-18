@@ -31,7 +31,7 @@ adjust prices.
 3. User Management: Enable admins to view and manage user accounts, including user details and
 account status.
 
-(In Progress)
+
 ## Mapping For Admin Side:
 1. AdminGUI(1) -> AdminNaviGUI -> FlightAdminGUI(2) -> FlightFormDialog(2)
 
