@@ -53,7 +53,7 @@ public class BookGui extends JFrame {
         JComboBox<String> seatDropdown = new JComboBox<>();
 
         for(Ticket ticket : tickets2){
-            if (ticket.getStatus().equalsIgnoreCase("available")){
+            if (ticket.getStatus().equalsIgnoreCase("available")&& ticket.getFlight().getflightNumber().equals(selectedFlight.getflightNumber()){
                 seatDropdown.addItem(ticket.getseatNumber());
             }
         }
