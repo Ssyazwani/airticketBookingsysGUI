@@ -25,8 +25,7 @@ public class BookManagementGUI extends JFrame{
 
         List<Ticket> managedTickets = tickets2.stream()
         .filter( ticket -> ticket.getOwner() != null && 
-        ticket.getOwner().equals(user) &&
-        ticket.getFlight().equals(flight) && 
+        ticket.getOwner().equals(user)  && 
        ("Confirmed".equalsIgnoreCase(ticket.getStatus())||"Cancelled".equalsIgnoreCase(ticket.getStatus()))).collect(Collectors.toList());
 
         String[] columnNames={"Seat","Flight","Status","Payment Method", "Confirmation Number"};

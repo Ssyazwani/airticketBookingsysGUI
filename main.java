@@ -50,34 +50,34 @@ public class Main {
 
         List<Ticket> tickets = new ArrayList<>();
         tickets.add(new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Available","","",null));
-        tickets.add(new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Available","","",null));
-        tickets.add(new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Available","","",null));
-        tickets.add(new Ticket("A01", "Minami", soraFlight1, "A01", 150, "Available","","",null));
+        tickets.add(new Ticket("A02", "Minami", soraFlight1, "A02", 150, "Available","","",null));
+        tickets.add(new Ticket("A03", "Minami", soraFlight1, "A03", 150, "Available","","",null));
+        tickets.add(new Ticket("A04", "Minami", soraFlight1, "A04", 150, "Available","","",null));
+        tickets.add(new Ticket("A05", "Minami", soraFlight1, "A05", 150, "Available","","",null));
 
-        tickets.add(new Ticket("A01", "Minami", soraFlight2, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", soraFlight2, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", soraFlight2, "A01", 150, "Available","","",null));
-        tickets.add(new Ticket("A01", "Minami", soraFlight2, "A01", 150, "Available","","",null));
-        tickets.add(new Ticket("A01", "Minami", soraFlight2, "A01", 150, "Available","","",null));
+        tickets.add(new Ticket("A06", "Minami", soraFlight2, "B01", 150, "Cancelled","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A07", "Minami", soraFlight2, "B02", 150, "Cancelled","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A08", "Minami", soraFlight2, "B03", 150, "Available","","",null));
+        tickets.add(new Ticket("A09", "Minami", soraFlight2, "B04", 150, "Available","","",null));
+        tickets.add(new Ticket("A10", "Minami", soraFlight2, "B05", 150, "Available","","",null));
         
-        tickets.add(new Ticket("A01", "Minami", jalFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", jalFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", jalFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", jalFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-        tickets.add(new Ticket("A01", "Minami", jalFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A11", "Minami", jalFlight1, "C01", 150, "Available","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A12", "Minami", jalFlight1, "C02", 150, "Available","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A13", "Minami", jalFlight1, "C03", 150, "Available","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A14", "Minami", jalFlight1, "C04", 150, "Cancelled","Credit Card","Special Case",minami));
+        tickets.add(new Ticket("A15", "Minami", jalFlight1, "C05", 150, "Cancelled","Credit Card","Special Case",minami));
 
-       tickets.add(new Ticket("A01", "Minami", elecFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-       tickets.add(new Ticket("A01", "Minami", elecFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
-       tickets.add(new Ticket("A01", "Minami", elecFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-       tickets.add(new Ticket("A01", "Minami", elecFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
-       tickets.add(new Ticket("A01", "Minami", elecFlight1, "A01", 150, "Available","Credit Card","Special Case",minami));
+       tickets.add(new Ticket("A16", "Minami", elecFlight1, "D01", 150, "Cancelled","Credit Card","Special Case",minami));
+       tickets.add(new Ticket("A17", "Minami", elecFlight1, "D02", 150, "Available","Credit Card","Special Case",minami));
+       tickets.add(new Ticket("A18", "Minami", elecFlight1, "D03", 150, "Cancelled","Credit Card","Special Case",minami));
+       tickets.add(new Ticket("A19", "Minami", elecFlight1, "D04", 150, "Available","Credit Card","Special Case",minami));
+       tickets.add(new Ticket("A20", "Minami", elecFlight1, "D05", 150, "Available","Credit Card","Special Case",minami));
         
-      tickets.add(new Ticket("A01", "Minami", repFlight1, "A01", 150, "Cancelled","Credit Card","Special Case",minami));
-      tickets.add(new Ticket("A01", "Minami", repFlight1, "A01", 150, "Cancelled","","Special Case",minami));
-      tickets.add(new Ticket("A01", "Minami", repFlight1, "A01", 150, "Available","","Special Case",null));
-      tickets.add(new Ticket("A01", "Minami", repFlight1, "A01", 150, "Available","","Special Case",null));
-      tickets.add(new Ticket("A01", "Minami", repFlight1, "A01", 150, "Cancelled","","",null));
+      tickets.add(new Ticket("A21", "Minami", repFlight1, "E01", 150, "Cancelled","Credit Card","Special Case",minami));
+      tickets.add(new Ticket("A22", "Minami", repFlight1, "E02", 150, "Cancelled","","Special Case",minami));
+      tickets.add(new Ticket("A23", "Minami", repFlight1, "E03", 150, "Available","","Special Case",null));
+      tickets.add(new Ticket("A24", "Minami", repFlight1, "E04", 150, "Available","","Special Case",null));
+      tickets.add(new Ticket("A25", "Minami", repFlight1, "E05", 150, "Cancelled","","",null));
       
         SwingUtilities.invokeLater(()->{
         MainGui login = new MainGui(userList,airline,tickets,flightList);
